@@ -1,0 +1,23 @@
+language: en  # The bot's language is English
+
+pipeline:
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 100
+- name: EntitySynonymMapper
+- name: ResponseSelector
+  epochs: 100
+
+policies:
+- name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+- name: MemoizationPolicy
+  max_history: 5
+- name: TEDPolicy
+  max_history: 5
+  epochs: 100
+assistant_id: 20241007-005632-fast-theater

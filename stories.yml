@@ -1,0 +1,12 @@
+version: "3.1"
+stories:
+- story: book a ticket using form
+  steps:
+  - intent: book_ticket
+  - action: booking_form
+  - active_loop: booking_form
+  - slot_was_set:
+      - destination: "London"
+      - departure_date: "March 10th"
+  - action: action_submit_booking_form
+  - action: utter_goodbye

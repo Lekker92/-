@@ -1,0 +1,58 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - book_ticket
+  - inform
+  - chitchat
+
+entities:
+  - destination
+  - departure_date
+
+slots:
+  destination:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: destination
+  departure_date:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: departure_date
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+
+  utter_goodbye:
+    - text: "Goodbye! Have a great day."
+
+  utter_ask_destination:
+    - text: "Where would you like to travel?"
+
+  utter_ask_departure_date:
+    - text: "When would you like to depart?"
+
+  utter_slots_filled:
+    - text: "You want to book a ticket to {destination} on {departure_date}, correct?"
+
+  utter_chitchat:
+    - text: "Let's stay focused on booking a ticket. How can I help you?"
+
+actions:
+  - action_submit_booking_form
+
+forms:
+  booking_form:
+    required_slots:
+      destination:
+        - mappings:
+            - type: from_entity
+              entity: destination
+      departure_date:
+        - mappings:
+            - type: from_entity
+              entity: departure_date
